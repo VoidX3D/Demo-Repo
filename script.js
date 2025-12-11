@@ -8,22 +8,22 @@ const CONFIG = {
             id: 'netflix-mirror',
             name: 'Netflix Mirror',
             url: 'https://netflixmir.vercel.app/',
-            description: 'Primary streaming mirror with full catalog access',
-            previewImage: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800&h=400&fit=crop'
+            description: 'Primary streaming mirror test',
+            previewImage: 'https://imgs.search.brave.com/RS7-iQ0KweolyJBQcuLw94qUfR60x1dZaXI50CP0EP0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA2LzA1Lzg0LzU0/LzM2MF9GXzYwNTg0/NTQ0NV9oMTJCUUFV/TzdmdEVPUTR2V2Vy/Z3oxOFNBeHF1VHB3/ZC5qcGc'
         },
         {
             id: 'streaming-site',
             name: 'Streaming Site',
             url: 'https://streamingsite.vercel.app/',
-            description: 'High-performance streaming platform with HD content',
-            previewImage: 'https://images.unsplash.com/photo-1574267432644-f61cc0b44d49?w=800&h=400&fit=crop'
+            description: 'Second domain configuration',
+            previewImage: 'https://imgs.search.brave.com/RS7-iQ0KweolyJBQcuLw94qUfR60x1dZaXI50CP0EP0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA2LzA1Lzg0LzU0/LzM2MF9GXzYwNTg0/NTQ0NV9oMTJCUUFV/TzdmdEVPUTR2V2Vy/Z3oxOFNBeHF1VHB3/ZC5qcGc'
         },
         {
             id: 'mirror-site',
             name: 'Mirror Site',
             url: 'https://mirrorsite.vercel.app/',
-            description: 'Backup mirror site for redundancy and load balancing',
-            previewImage: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=400&fit=crop'
+            description: 'Backup mirror site',
+            previewImage: 'https://imgs.search.brave.com/RS7-iQ0KweolyJBQcuLw94qUfR60x1dZaXI50CP0EP0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA2LzA1Lzg0LzU0/LzM2MF9GXzYwNTg0/NTQ0NV9oMTJCUUFV/TzdmdEVPUTR2V2Vy/Z3oxOFNBeHF1VHB3/ZC5qcGc'
         }
     ],
     
