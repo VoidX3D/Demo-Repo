@@ -1,65 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safe Browsing Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Professional Links Dashboard - Real-time monitoring and status tracking">
+    <meta name="theme-color" content="#000000">
+    <title>Links Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <h1>Safe Browsing Dashboard</h1>
-    <p>Check links, uptime & access databases safely</p>
-  </header>
-
-  <main class="main-content">
-    <section class="cards-section">
-      <h2>Test Sites</h2>
-      <div class="cards-container" id="cardsContainer">
-        <!-- Cards injected by JS -->
-      </div>
-    </section>
-
-    <section class="console-section">
-      <h2>Uptime Console</h2>
-      <div class="console" id="console">
-        <p>Fetching uptime JSON responses...</p>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <h2>Stats</h2>
-      <div class="stats">
-        <div class="stat">
-          <h3 id="totalSites">0</h3>
-          <p>Total Sites</p>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="brand-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+                <span class="brand-text">Links Dashboard</span>
+            </div>
+            <div class="nav-stats">
+                <div class="stat-item">
+                    <svg class="stat-icon stat-icon-success" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="stat-label">Online</span>
+                    <span class="stat-value" id="onlineCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon stat-icon-error" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span class="stat-label">Offline</span>
+                    <span class="stat-value" id="offlineCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon stat-icon-pending" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="stat-label">Checking</span>
+                    <span class="stat-value" id="checkingCount">0</span>
+                </div>
+            </div>
         </div>
-        <div class="stat">
-          <h3 id="workingSites">0</h3>
-          <p>Working</p>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Test Sites Section -->
+            <section class="section" id="testSitesSection">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <h2 class="section-title">Test Sites</h2>
+                        <span class="section-badge" id="testSitesBadge">3</span>
+                    </div>
+                    <button class="refresh-btn" id="refreshTestSites" title="Refresh Status">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="cards-grid" id="testSitesGrid"></div>
+            </section>
+
+            <!-- Database Section -->
+            <section class="section" id="databaseSection">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                        <h2 class="section-title">Database</h2>
+                        <span class="section-badge">1</span>
+                    </div>
+                </div>
+                <div class="cards-grid" id="databaseGrid"></div>
+            </section>
+
+            <!-- Live Console Section -->
+            <section class="section" id="consoleSection">
+                <div class="section-header">
+                    <div class="section-title-group">
+                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <h2 class="section-title">Live Console</h2>
+                        <span class="section-badge" id="consoleBadge">0</span>
+                    </div>
+                    <div class="console-controls">
+                        <button class="console-control-btn" id="toggleAutoRefresh" title="Toggle Auto Refresh">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </button>
+                        <button class="console-control-btn" id="clearConsole" title="Clear Console">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                        <button class="console-control-btn" id="fetchScriptData" title="Fetch Script Data">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="console-wrapper">
+                    <div class="console-header-bar">
+                        <div class="console-tabs">
+                            <div class="console-tab active">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                </svg>
+                                <span>Output</span>
+                            </div>
+                        </div>
+                        <div class="console-status">
+                            <div class="console-status-dot"></div>
+                            <span id="consoleStatus">Ready</span>
+                        </div>
+                    </div>
+                    <div class="console-body" id="consoleBody">
+                        <div class="console-welcome">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"></polyline>
+                                <line x1="12" y1="19" x2="20" y2="19"></line>
+                            </svg>
+                            <h3>Console Ready</h3>
+                            <p>Waiting for script responses...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
-        <div class="stat">
-          <h3 id="failedSites">0</h3>
-          <p>Failed</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4 class="footer-title">Links Dashboard</h4>
+                <p class="footer-text">Real-time monitoring and status tracking system for production environments.</p>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">Features</h4>
+                <ul class="footer-list">
+                    <li>Live Status Monitoring</li>
+                    <li>Automated Health Checks</li>
+                    <li>Script Response Tracking</li>
+                    <li>Real-time Updates</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">Technical</h4>
+                <ul class="footer-list">
+                    <li>Auto-refresh: 8s interval</li>
+                    <li>Status checks: On-demand</li>
+                    <li>Response time tracking</li>
+                    <li>Error logging enabled</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title">System Info</h4>
+                <ul class="footer-list">
+                    <li id="footerUptime">Uptime: Calculating...</li>
+                    <li id="footerLastUpdate">Last update: --:--:--</li>
+                    <li id="footerVersion">Version: 1.0.0</li>
+                    <li id="footerStatus">Status: Active</li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </section>
+        <div class="footer-bottom">
+            <p>&copy; 2025  Dashboard.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">|</a>
+                <span class="footer-separator">|</span>
+                <a href="#" class="footer-link">|</a>
+                <span class="footer-separator">|</span>
+                <a href="#" class="footer-link">Documentation</a>
+            </div>
+        </div>
+    </footer>
 
-    <section class="cards-section">
-      <h2>Database Links</h2>
-      <div class="cards-container">
-        <a href="https://docs.google.com/spreadsheets/d/1gaxZb6YUvAYfjfokaWQKGqLkRiYZFlIhKS0SENIU8O0/edit?usp=sharing" target="_blank" class="card db-card">
-          Google Sheet Database
-        </a>
-      </div>
-    </section>
-  </main>
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-  <footer class="footer">
-    <p>@2025 Sincere Bhattarai.</p>
-  </footer>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p class="loading-text">Initializing Dashboard...</p>
+    </div>
 
-  <script src="script.js"></script>
+    <!-- External Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
