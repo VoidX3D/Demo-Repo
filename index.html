@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safe Browsing Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <h1>Safe Browsing Dashboard</h1>
+    <p>Check links, uptime & access databases safely</p>
+  </header>
+
+  <main class="main-content">
+    <section class="cards-section">
+      <h2>Test Sites</h2>
+      <div class="cards-container" id="cardsContainer">
+        <!-- Cards will be injected via JS -->
+      </div>
+    </section>
+
+    <section class="console-section">
+      <h2>Uptime Console</h2>
+      <div class="console" id="console">
+        <p>Checking site statuses...</p>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <h2>Stats</h2>
+      <div class="stats">
+        <div class="stat">
+          <h3 id="totalSites">0</h3>
+          <p>Total Sites</p>
+        </div>
+        <div class="stat">
+          <h3 id="workingSites">0</h3>
+          <p>Working</p>
+        </div>
+        <div class="stat">
+          <h3 id="failedSites">0</h3>
+          <p>Failed</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-section">
+      <h2>Database Links</h2>
+      <div class="cards-container">
+        <a href="https://docs.google.com/spreadsheets/d/1gaxZb6YUvAYfjfokaWQKGqLkRiYZFlIhKS0SENIU8O0/edit?usp=sharing" target="_blank" class="card db-card">
+          Google Sheet Database
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Safe Browsing Links. Professional & shareable.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
