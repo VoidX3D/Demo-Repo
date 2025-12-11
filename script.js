@@ -14,7 +14,7 @@ const CONFIG = {
         {
             id: 'streaming-site',
             name: 'Streaming Site',
-            url: 'netmirr.vercel.app',
+            url: 'https://netmirr.vercel.app/',
             description: 'Second domain configuration',
             previewImage: 'https://imgs.search.brave.com/RS7-iQ0KweolyJBQcuLw94qUfR60x1dZaXI50CP0EP0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA2LzA1Lzg0LzU0/LzM2MF9GXzYwNTg0/NTQ0NV9oMTJCUUFV/TzdmdEVPUTR2V2Vy/Z3oxOFNBeHF1VHB3/ZC5qcGc'
         },
