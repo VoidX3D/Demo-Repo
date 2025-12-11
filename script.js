@@ -32,7 +32,7 @@ const CONFIG = {
         name: 'Main Database',
         url: 'https://docs.google.com/spreadsheets/d/1gaxZb6YUvAYfjfokaWQKGqLkRiYZFlIhKS0SENIU8O0/edit?usp=sharing',
         description: 'Central Google Sheets database containing site configurations, analytics, and operational data',
-        previewImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop'
+        previewImage: 'https://imgs.search.brave.com/tzVAH6o9dZ6LkUTtxHZOadRisevGrBtkrAfxPo6S-9Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9kYXRh/YmFzZS0zODE3OTU2/My5qcGc'
     },
     
     scriptEndpoints: [
