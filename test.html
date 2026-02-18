@@ -3,336 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Links Dashboard - Material 3 Expressive Dark Theme">
-    <meta name="theme-color" content="#1D192B">
-    <title>Links Dashboard · M3</title>
+    <title>Links Dashboard · NODE SYSTEM</title>
     
-    <!-- Material 3 fonts -->
+    <!-- Material 3 with Google Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="test.css">
     
-    <!-- Animated favicon -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F8AFF'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' stroke='white' stroke-width='1.5' fill='none'/%3E%3C/svg%3E">
+    <!-- Dynamic favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23808080'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23ffffff'/%3E%3C/svg%3E" id="dynamicFavicon">
 </head>
 <body>
-    <!-- Animated background particles -->
-    <div class="particles" id="particles"></div>
+    <!-- 3D Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
     
-    <!-- Loading Overlay with premium animation -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <svg class="loading-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-width="2"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-width="2"/>
+    <!-- Node Connection Network -->
+    <div class="node-network" id="nodeNetwork"></div>
+    
+    <!-- Quantum Loading Overlay -->
+    <div class="quantum-overlay" id="quantumOverlay">
+        <div class="quantum-container">
+            <!-- Google-style morphing blob -->
+            <div class="morphing-blob">
+                <svg viewBox="0 0 200 200">
+                    <path fill="url(#gradient)" d="M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0">
+                        <animate attributeName="d" 
+                            dur="6s" 
+                            values="M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0;
+                                    M120,20 C170,20 200,60 200,100 C200,140 160,180 120,180 C80,180 40,140 40,100 C40,60 70,20 120,20;
+                                    M80,20 C130,20 180,50 180,100 C180,150 130,180 80,180 C30,180 0,130 0,100 C0,50 30,20 80,20;
+                                    M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0"
+                            repeatCount="indefinite" 
+                            fill="freeze"
+                        />
+                    </path>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1">
+                                <animate attributeName="stop-color" values="#8B5CF6;#EC4899;#8B5CF6" dur="4s" repeatCount="indefinite" />
+                            </stop>
+                            <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1">
+                                <animate attributeName="stop-color" values="#3B82F6;#8B5CF6;#3B82F6" dur="4s" repeatCount="indefinite" />
+                            </stop>
+                            <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1">
+                                <animate attributeName="stop-color" values="#EC4899;#3B82F6;#EC4899" dur="4s" repeatCount="indefinite" />
+                            </stop>
+                        </linearGradient>
+                    </defs>
                 </svg>
             </div>
-            <div class="loading-spinner">
-                <div class="spinner-ring"></div>
-                <div class="spinner-ring"></div>
-                <div class="spinner-ring"></div>
-                <div class="spinner-ring"></div>
+            
+            <!-- Particle ring -->
+            <div class="particle-ring">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
             </div>
-            <div class="loading-text">
-                <span class="loading-text-char" style="--char-index:0">I</span>
-                <span class="loading-text-char" style="--char-index:1">n</span>
-                <span class="loading-text-char" style="--char-index:2">i</span>
-                <span class="loading-text-char" style="--char-index:3">t</span>
-                <span class="loading-text-char" style="--char-index:4">i</span>
-                <span class="loading-text-char" style="--char-index:5">a</span>
-                <span class="loading-text-char" style="--char-index:6">l</span>
-                <span class="loading-text-char" style="--char-index:7">i</span>
-                <span class="loading-text-char" style="--char-index:8">z</span>
-                <span class="loading-text-char" style="--char-index:9">i</span>
-                <span class="loading-text-char" style="--char-index:10">n</span>
-                <span class="loading-text-char" style="--char-index:11">g</span>
-                <span class="loading-text-char" style="--char-index:12">.</span>
-                <span class="loading-text-char" style="--char-index:13">.</span>
-                <span class="loading-text-char" style="--char-index:14">.</span>
+            
+            <!-- Loading text with quantum effect -->
+            <div class="quantum-text">
+                <span class="quantum-char" style="--i:0">I</span>
+                <span class="quantum-char" style="--i:1">N</span>
+                <span class="quantum-char" style="--i:2">I</span>
+                <span class="quantum-char" style="--i:3">T</span>
+                <span class="quantum-char" style="--i:4">I</span>
+                <span class="quantum-char" style="--i:5">A</span>
+                <span class="quantum-char" style="--i:6">L</span>
+                <span class="quantum-char" style="--i:7">I</span>
+                <span class="quantum-char" style="--i:8">Z</span>
+                <span class="quantum-char" style="--i:9">I</span>
+                <span class="quantum-char" style="--i:10">N</span>
+                <span class="quantum-char" style="--i:11">G</span>
+                <span class="quantum-char" style="--i:12">.</span>
+                <span class="quantum-char" style="--i:13">.</span>
+                <span class="quantum-char" style="--i:14">.</span>
+            </div>
+            
+            <!-- Progress bar -->
+            <div class="quantum-progress">
+                <div class="quantum-progress-bar" id="loadingProgress"></div>
             </div>
         </div>
     </div>
 
-    <!-- Main App Bar - M3 Large Top App Bar -->
-    <header class="app-bar">
-        <div class="app-bar-container">
-            <div class="app-bar-leading">
-                <button class="icon-button" id="menuButton" aria-label="Menu">
-                    <svg class="animated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M3 12h18M3 6h18M3 18h18" stroke-width="2" stroke-linecap="round">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20;20 20;0 20" dur="4s" repeatCount="indefinite"/>
-                            <animate attributeName="stroke-dashoffset" values="0;0;-20;-20" dur="4s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </button>
-            </div>
+    <!-- Main Container -->
+    <div class="dashboard">
+        <!-- Cosmic Navigation -->
+        <nav class="cosmic-nav">
+            <div class="nav-glow"></div>
             
-            <div class="app-bar-headline">
-                <h1 class="app-bar-title">Links Dashboard</h1>
-                <span class="app-bar-subtitle">Material 3 · expressive</span>
-            </div>
-            
-            <div class="app-bar-trailing">
-                <button class="icon-button" id="searchButton" aria-label="Search">
-                    <svg class="animated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="11" cy="11" r="8" stroke-width="2"/>
-                        <path d="M21 21l-4.35-4.35" stroke-width="2" stroke-linecap="round">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="1.5s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </button>
-                
-                <button class="icon-button" id="notificationsButton" aria-label="Notifications">
-                    <svg class="animated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2"/>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2">
-                            <animate attributeName="stroke-opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </button>
-                
-                <button class="icon-button" id="accountButton" aria-label="Account">
-                    <svg class="animated-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="8" r="4" stroke-width="2"/>
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="2s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Animated status chips -->
-        <div class="status-chips">
-            <div class="chip chip-animated" id="onlineChip">
-                <div class="chip-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                        <path d="M12 8v4l3 3" stroke-width="2">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="1.2s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </div>
-                <span class="chip-label">Online</span>
-                <span class="chip-value" id="onlineCount">0</span>
-                <div class="chip-glow"></div>
-            </div>
-            
-            <div class="chip chip-animated" id="offlineChip">
-                <div class="chip-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                        <line x1="8" y1="8" x2="16" y2="16" stroke-width="2">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="0.8s" repeatCount="indefinite"/>
-                        </line>
-                        <line x1="16" y1="8" x2="8" y2="16" stroke-width="2">
-                            <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="0.8s" repeatCount="indefinite"/>
-                        </line>
-                    </svg>
-                </div>
-                <span class="chip-label">Offline</span>
-                <span class="chip-value" id="offlineCount">0</span>
-                <div class="chip-glow"></div>
-            </div>
-            
-            <div class="chip chip-animated" id="checkingChip">
-                <div class="chip-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                        <path d="M12 6v6l4 2" stroke-width="2">
-                            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="3s" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </div>
-                <span class="chip-label">Checking</span>
-                <span class="chip-value" id="checkingCount">0</span>
-                <div class="chip-glow"></div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            
-            <!-- Hero Section with animated wave -->
-            <div class="hero-section">
-                <div class="hero-content">
-                    <h2 class="hero-title">
-                        <span class="hero-title-word" style="--word-index:0">Live</span>
-                        <span class="hero-title-word" style="--word-index:1">Status</span>
-                        <span class="hero-title-word" style="--word-index:2">Monitor</span>
-                    </h2>
-                    <p class="hero-subtitle">Real-time tracking with expressive Material 3</p>
-                </div>
-                <div class="hero-wave">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25">
-                            <animate attributeName="d" dur="10s" values="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z;M0,0V15.81C13,21.25,27.93,25.67,44.24,28.45c69.76,11.2,142.26,3.42,211.85-13.12,39.4-9.37,77.9-22.9,118.16-30.33C494,2.48,574.45,30.16,656.69,42.83c73.26,11.44,147.75,6.36,221.17-7.08,35.27-6.44,69.41-16.39,104.45-26.67C1090.49,2.78,1187.32,3.78,1200,10.38V0Z;M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" repeatCount="indefinite"/>
-                        </path>
-                    </svg>
-                </div>
-            </div>
-            
-            <!-- Test Sites Section -->
-            <section class="section" id="testSitesSection">
-                <div class="section-header">
-                    <div class="section-title-wrapper">
-                        <div class="section-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21" stroke-width="2"/>
-                                <line x1="12" y1="17" x2="12" y2="21" stroke-width="2"/>
-                                <circle cx="12" cy="10" r="2" fill="currentColor">
-                                    <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/>
-                                </circle>
-                            </svg>
-                        </div>
-                        <h2 class="section-title">Test sites</h2>
-                        <div class="section-badge" id="testSitesBadge">3</div>
-                    </div>
-                    
-                    <button class="fab" id="refreshTestSites" aria-label="Refresh">
+            <div class="nav-brand">
+                <div class="brand-orbit">
+                    <div class="orbit-core">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M23 4v6h-6" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M1 20v-6h6" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-width="2">
-                                <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="2s" repeatCount="indefinite"/>
-                            </path>
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-width="2"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-width="2"/>
                         </svg>
-                        <span class="fab-ripple"></span>
-                    </button>
+                    </div>
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-ring"></div>
                 </div>
-                
-                <div class="cards-grid" id="testSitesGrid"></div>
-            </section>
-            
-            <!-- Database Section -->
-            <section class="section" id="databaseSection">
-                <div class="section-header">
-                    <div class="section-title-wrapper">
-                        <div class="section-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2"/>
-                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" stroke-width="2"/>
-                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" stroke-width="2">
-                                    <animate attributeName="stroke-dasharray" values="0 40;40 40" dur="2s" repeatCount="indefinite"/>
-                                </path>
-                            </svg>
-                        </div>
-                        <h2 class="section-title">Database</h2>
-                        <div class="section-badge">1</div>
-                    </div>
+                <div class="brand-text">
+                    <span class="brand-title">Links Dashboard</span>
+                    <span class="brand-node">node://system/v2</span>
                 </div>
-                
-                <div class="cards-grid" id="databaseGrid"></div>
-            </section>
-            
-            <!-- Live Console Section -->
-            <section class="section" id="consoleSection">
-                <div class="section-header">
-                    <div class="section-title-wrapper">
-                        <div class="section-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <polyline points="4 17 10 11 4 5" stroke-width="2">
-                                    <animate attributeName="stroke-dasharray" values="0 20;20 20" dur="1.5s" repeatCount="indefinite"/>
-                                </polyline>
-                                <line x1="12" y1="19" x2="20" y2="19" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h2 class="section-title">Live console</h2>
-                        <div class="section-badge" id="consoleBadge">0</div>
-                    </div>
-                    
-                    <div class="console-actions">
-                        <button class="icon-button large" id="toggleAutoRefresh" aria-label="Toggle auto refresh">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <polygon points="5 3 19 12 5 21 5 3" stroke-width="2">
-                                    <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
-                                </polygon>
-                            </svg>
-                        </button>
-                        
-                        <button class="icon-button large" id="clearConsole" aria-label="Clear console">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <polyline points="3 6 5 6 21 6" stroke-width="2"/>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="2">
-                                    <animate attributeName="stroke-dasharray" values="0 30;30 30" dur="1s" repeatCount="indefinite"/>
-                                </path>
-                            </svg>
-                        </button>
-                        
-                        <button class="icon-button large" id="fetchScriptData" aria-label="Fetch scripts">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <line x1="12" y1="5" x2="12" y2="19" stroke-width="2">
-                                    <animate attributeName="y1" values="5;3;5" dur="1.5s" repeatCount="indefinite"/>
-                                    <animate attributeName="y2" values="19;21;19" dur="1.5s" repeatCount="indefinite"/>
-                                </line>
-                                <polyline points="19 12 12 19 5 12" stroke-width="2"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Console Panel -->
-                <div class="console-panel">
-                    <div class="console-header">
-                        <div class="console-status-indicator">
-                            <div class="status-dot" id="consoleStatusDot"></div>
-                            <span id="consoleStatus">Ready</span>
-                        </div>
-                        
-                        <div class="console-metrics">
-                            <span id="consoleLastUpdate">--:--:--</span>
-                        </div>
-                    </div>
-                    
-                    <div class="console-body" id="consoleBody">
-                        <div class="console-placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <polyline points="4 17 10 11 4 5" stroke-width="1.5"/>
-                                <line x1="12" y1="19" x2="20" y2="19" stroke-width="1.5"/>
-                            </svg>
-                            <h3>Console ready</h3>
-                            <p>Waiting for script responses...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <svg class="footer-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-width="2"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-width="2"/>
-                </svg>
-                <span>Links Dashboard</span>
             </div>
             
-            <div class="footer-stats" id="footerStats">
-                <span id="footerUptime">Uptime: calculating...</span>
-                <span id="footerVersion">v2.0.0 · M3</span>
+            <!-- Quantum Status Nodes -->
+            <div class="status-nodes">
+                <div class="status-node" id="onlineNode">
+                    <div class="node-particle"></div>
+                    <div class="node-content">
+                        <span class="node-label">ONLINE</span>
+                        <span class="node-value" id="onlineCount">0</span>
+                    </div>
+                    <div class="node-ring"></div>
+                </div>
+                
+                <div class="status-node" id="offlineNode">
+                    <div class="node-particle"></div>
+                    <div class="node-content">
+                        <span class="node-label">OFFLINE</span>
+                        <span class="node-value" id="offlineCount">0</span>
+                    </div>
+                    <div class="node-ring"></div>
+                </div>
+                
+                <div class="status-node" id="checkingNode">
+                    <div class="node-particle"></div>
+                    <div class="node-content">
+                        <span class="node-label">CHECKING</span>
+                        <span class="node-value" id="checkingCount">0</span>
+                    </div>
+                    <div class="node-ring"></div>
+                </div>
             </div>
             
-            <div class="footer-copyright">
-                © 2025 Made by Sincere Bhattarai
+            <!-- Quantum Clock -->
+            <div class="quantum-clock">
+                <div class="clock-digits" id="liveClock">--:--:--</div>
+                <div class="clock-label">SYSTEM TIME</div>
             </div>
-        </div>
-    </footer>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Cosmic Grid -->
+            <div class="cosmic-grid">
+                
+                <!-- Test Sites Section -->
+                <section class="node-section" id="testSitesSection">
+                    <div class="section-hologram">
+                        <div class="section-header">
+                            <div class="header-quantum">
+                                <div class="quantum-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21" stroke-width="2"/>
+                                        <line x1="12" y1="17" x2="12" y2="21" stroke-width="2"/>
+                                    </svg>
+                                    <div class="icon-pulse"></div>
+                                </div>
+                                <h2 class="section-title">TEST SITES</h2>
+                                <div class="node-badge" id="testSitesBadge">3</div>
+                            </div>
+                            
+                            <button class="quantum-button" id="refreshTestSites">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M23 4v6h-6" stroke-width="2"/>
+                                    <path d="M1 20v-6h6" stroke-width="2"/>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-width="2"/>
+                                </svg>
+                                <span class="button-glow"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="nodes-grid" id="testSitesGrid"></div>
+                    </div>
+                </section>
+                
+                <!-- Database Section -->
+                <section class="node-section" id="databaseSection">
+                    <div class="section-hologram">
+                        <div class="section-header">
+                            <div class="header-quantum">
+                                <div class="quantum-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2"/>
+                                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" stroke-width="2"/>
+                                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" stroke-width="2"/>
+                                    </svg>
+                                    <div class="icon-pulse"></div>
+                                </div>
+                                <h2 class="section-title">DATABASE NODE</h2>
+                                <div class="node-badge">1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="nodes-grid" id="databaseGrid"></div>
+                    </div>
+                </section>
+                
+                <!-- Quantum Console -->
+                <section class="node-section" id="consoleSection">
+                    <div class="section-hologram">
+                        <div class="section-header">
+                            <div class="header-quantum">
+                                <div class="quantum-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="4 17 10 11 4 5" stroke-width="2"/>
+                                        <line x1="12" y1="19" x2="20" y2="19" stroke-width="2"/>
+                                    </svg>
+                                    <div class="icon-pulse"></div>
+                                </div>
+                                <h2 class="section-title">QUANTUM CONSOLE</h2>
+                                <div class="node-badge" id="consoleBadge">0</div>
+                            </div>
+                            
+                            <div class="console-controls">
+                                <button class="quantum-button small" id="toggleAutoRefresh" title="Toggle quantum stream">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polygon points="5 3 19 12 5 21 5 3" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                                
+                                <button class="quantum-button small" id="clearConsole" title="Clear quantum buffer">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="3 6 5 6 21 6" stroke-width="2"/>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                                
+                                <button class="quantum-button small" id="fetchScriptData" title="Fetch quantum data">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <line x1="12" y1="5" x2="12" y2="19" stroke-width="2"/>
+                                        <polyline points="19 12 12 19 5 12" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantum Console Panel -->
+                        <div class="quantum-console">
+                            <div class="console-matrix">
+                                <div class="console-header">
+                                    <div class="matrix-indicator">
+                                        <div class="indicator-dot" id="consoleStatusDot"></div>
+                                        <span id="consoleStatus">QUANTUM_READY</span>
+                                    </div>
+                                    <div class="matrix-time" id="consoleTimestamp">--:--:--</div>
+                                </div>
+                                <div class="console-output" id="consoleBody">
+                                    <div class="console-placeholder">
+                                        <div class="placeholder-wave"></div>
+                                        <div class="placeholder-text">
+                                            <span>></span>
+                                            <span class="cursor">_</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <!-- Quantum Footer -->
+        <footer class="quantum-footer">
+            <div class="footer-matrix">
+                <div class="footer-node">
+                    <span class="node-pulse"></span>
+                    <span id="footerUptime">UPTIME: 0h 0m 0s</span>
+                </div>
+                
+                <div class="footer-node">
+                    <span class="node-pulse"></span>
+                    <span id="footerVersion">NODE v2.0.0</span>
+                </div>
+                
+                <div class="footer-node">
+                    <span class="node-pulse"></span>
+                    <span>© 2025 Sincere Bhattarai</span>
+                </div>
+                
+                <div class="footer-node">
+                    <span class="node-pulse"></span>
+                    <span id="footerStatus">STATUS: ACTIVE</span>
+                </div>
+            </div>
+            
+            <!-- Particle stream -->
+            <div class="particle-stream"></div>
+        </footer>
+    </div>
     
     <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
+    <div class="toast-orbit" id="toastContainer"></div>
     
-    <!-- Script -->
     <script src="test.js"></script>
 </body>
 </html>
