@@ -1,8 +1,8 @@
 // ===================================
-// QUANTUM NODE SYSTEM - MATERIAL 3
+// MATERIAL 3 DASHBOARD - OFFICIAL
 // ===================================
 
-class QuantumNodeSystem {
+class Material3Dashboard {
     constructor() {
         this.config = {
             testSites: [
@@ -46,7 +46,7 @@ class QuantumNodeSystem {
             statusCheckTimeout: 5000,
             maxConsoleEntries: 100,
             
-            fallbackImage: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%2312121A"/%3E%3Ctext x="200" y="100" font-family="Google Sans" font-size="16" fill="%238B5CF6" text-anchor="middle"%3ENODE OFFLINE%3C/text%3E%3C/svg%3E'
+            fallbackImage: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%2349454F"/%3E%3Ctext x="200" y="100" font-family="Roboto" font-size="16" fill="%23CAC4D0" text-anchor="middle"%3EImage not found%3C/text%3E%3C/svg%3E'
         };
         
         this.state = {
@@ -56,150 +56,42 @@ class QuantumNodeSystem {
             consoleEntries: [],
             startTime: Date.now(),
             lastUpdateTime: null,
-            isInitialized: false,
-            loadingProgress: 0
+            isInitialized: false
         };
         
         this.init();
     }
     
     async init() {
-        await this.init3DBackground();
-        this.initNodeNetwork();
+        // Simulate loading with Eminem-inspired animation
         await this.simulateLoading();
         await this.initDashboard();
-        this.startQuantumClock();
         this.setupEventListeners();
-    }
-    
-    async init3DBackground() {
-        const canvas = document.getElementById('bgCanvas');
-        if (!canvas) return;
-        
-        const ctx = canvas.getContext('2d');
-        const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        window.addEventListener('resize', resize);
-        resize();
-        
-        const particles = [];
-        const particleCount = 50;
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                z: Math.random() * 1000,
-                size: Math.random() * 2 + 1,
-                speed: Math.random() * 2 + 0.5,
-                color: `rgba(${Math.random() * 100 + 155}, ${Math.random() * 100 + 55}, 255, ${Math.random() * 0.5 + 0.2})`
-            });
-        }
-        
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(p => {
-                p.z -= p.speed;
-                
-                if (p.z <= 0) {
-                    p.z = 1000;
-                    p.x = Math.random() * canvas.width;
-                    p.y = Math.random() * canvas.height;
-                }
-                
-                const scale = 500 / p.z;
-                const x2d = (p.x - canvas.width / 2) * scale + canvas.width / 2;
-                const y2d = (p.y - canvas.height / 2) * scale + canvas.height / 2;
-                const size = p.size * scale;
-                
-                if (x2d > 0 && x2d < canvas.width && y2d > 0 && y2d < canvas.height) {
-                    ctx.beginPath();
-                    ctx.arc(x2d, y2d, size, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                    
-                    // Connection lines
-                    particles.forEach(p2 => {
-                        const scale2 = 500 / p2.z;
-                        const x2d2 = (p2.x - canvas.width / 2) * scale2 + canvas.width / 2;
-                        const y2d2 = (p2.y - canvas.height / 2) * scale2 + canvas.height / 2;
-                        
-                        const distance = Math.hypot(x2d - x2d2, y2d - y2d2);
-                        if (distance < 100) {
-                            ctx.beginPath();
-                            ctx.moveTo(x2d, y2d);
-                            ctx.lineTo(x2d2, y2d2);
-                            ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - distance / 100)})`;
-                            ctx.stroke();
-                        }
-                    });
-                }
-            });
-            
-            requestAnimationFrame(animate);
-        };
-        
-        animate();
-    }
-    
-    initNodeNetwork() {
-        const network = document.getElementById('nodeNetwork');
-        if (!network) return;
-        
-        for (let i = 0; i < 20; i++) {
-            const node = document.createElement('div');
-            node.className = 'network-node';
-            node.style.cssText = `
-                position: absolute;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                width: ${Math.random() * 4 + 2}px;
-                height: ${Math.random() * 4 + 2}px;
-                background: rgba(139, 92, 246, ${Math.random() * 0.5 + 0.2});
-                border-radius: 50%;
-                box-shadow: 0 0 ${Math.random() * 10 + 5}px rgba(139, 92, 246, 0.5);
-                animation: nodeFloat ${Math.random() * 4 + 3}s ease-in-out infinite;
-                animation-delay: ${Math.random() * 2}s;
-            `;
-            network.appendChild(node);
-        }
-        
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes nodeFloat {
-                0%, 100% { transform: translate(0, 0); }
-                25% { transform: translate(${Math.random() * 30}px, ${Math.random() * 30}px); }
-                50% { transform: translate(${Math.random() * -30}px, ${Math.random() * 30}px); }
-                75% { transform: translate(${Math.random() * 30}px, ${Math.random() * -30}px); }
-            }
-        `;
-        document.head.appendChild(style);
+        this.startClock();
+        this.startUptimeCounter();
     }
     
     async simulateLoading() {
-        const progressBar = document.querySelector('.quantum-progress-bar');
-        const steps = 100;
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const progressBar = document.querySelector('.progress-bar');
         
-        for (let i = 0; i <= steps; i++) {
-            this.state.loadingProgress = i;
-            if (progressBar) {
-                progressBar.style.width = `${i}%`;
+        // Animate progress bar
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                
+                // Hide overlay after a short delay
+                setTimeout(() => {
+                    loadingOverlay.classList.add('hidden');
+                }, 500);
             }
-            
-            // Random delay for realistic loading
-            await new Promise(r => setTimeout(r, Math.random() * 30 + 10));
-        }
+        }, 200);
         
-        // Hide overlay after loading
-        setTimeout(() => {
-            const overlay = document.getElementById('quantumOverlay');
-            if (overlay) {
-                overlay.classList.add('hidden');
-            }
-        }, 500);
+        // Wait for minimum loading time (3 seconds for effect)
+        await new Promise(resolve => setTimeout(resolve, 3000));
     }
     
     async initDashboard() {
@@ -207,19 +99,16 @@ class QuantumNodeSystem {
         await this.renderTestSites();
         await this.fetchScriptData();
         this.startAutoRefresh();
-        this.startUptimeCounter();
         this.state.isInitialized = true;
-        this.showToast('Quantum system online', 'success');
+        this.showSnackbar('Dashboard ready', 'success');
     }
     
     renderDatabase() {
         const grid = document.getElementById('databaseGrid');
         if (!grid) return;
         
-        const db = this.config.database;
-        const card = this.createQuantumCard(db, true);
         grid.innerHTML = '';
-        grid.appendChild(card);
+        grid.appendChild(this.createQuantumCard(this.config.database, true));
     }
     
     async renderTestSites() {
@@ -250,7 +139,6 @@ class QuantumNodeSystem {
         }
         
         this.state.lastUpdateTime = new Date();
-        this.updateFooterInfo();
     }
     
     createQuantumCard(item, isDatabase = false) {
@@ -263,61 +151,45 @@ class QuantumNodeSystem {
             (this.state.siteStatuses[item.id] || { status: 'checking' });
         
         const statusColors = {
-            online: 'var(--node-online)',
-            offline: 'var(--node-offline)',
-            checking: 'var(--node-checking)'
+            online: '#4CAF50',
+            offline: '#F44336',
+            checking: '#FFC107'
         };
         
         card.innerHTML = `
-            <div class="card-quantum-field"></div>
             <div class="card-media">
                 <img src="${item.previewImage}" alt="${item.name}" loading="lazy"
                      onerror="this.src='${this.config.fallbackImage}'">
-                <div class="card-media-overlay"></div>
-                <div class="card-status-node" style="--status-color: ${statusColors[status.status]}">
-                    <div class="status-indicator"></div>
-                    <span class="status-text">${status.status.toUpperCase()}</span>
+                <div class="card-status-badge">
+                    <div class="status-dot small" style="background: ${statusColors[status.status]};"></div>
+                    <span style="color: ${statusColors[status.status]}">${status.status.toUpperCase()}</span>
                 </div>
             </div>
             <div class="card-content">
                 <h3 class="card-title">${item.name}</h3>
-                <a href="${item.url}" target="_blank" class="card-url" rel="noopener">${item.url}</a>
+                <a href="${item.url}" target="_blank" class="card-url">${item.url}</a>
                 <p class="card-description">${item.description}</p>
                 
                 ${!isDatabase ? `
                 <div class="card-metrics">
                     <div class="metric">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                            <polyline points="12 6 12 12 16 14" stroke-width="2"/>
-                        </svg>
+                        <span class="material-symbols-rounded">schedule</span>
                         <span>${status.duration ? this.formatDuration(status.duration) : '--'}</span>
                     </div>
                     <div class="metric">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-width="2"/>
-                            <polyline points="15 3 21 3 21 9" stroke-width="2"/>
-                            <line x1="10" y1="14" x2="21" y2="3" stroke-width="2"/>
-                        </svg>
+                        <span class="material-symbols-rounded">code</span>
                         <span>${status.statusCode || '--'}</span>
                     </div>
                 </div>
                 ` : ''}
                 
                 <div class="card-actions">
-                    <button class="card-action-btn primary" onclick="window.open('${item.url}', '_blank')">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-width="2"/>
-                            <polyline points="15 3 21 3 21 9" stroke-width="2"/>
-                            <line x1="10" y1="14" x2="21" y2="3" stroke-width="2"/>
-                        </svg>
-                        <span>${isDatabase ? 'ACCESS NODE' : 'CONNECT'}</span>
+                    <button class="m3-button primary" onclick="window.open('${item.url}', '_blank')">
+                        <span class="material-symbols-rounded">open_in_new</span>
+                        <span>${isDatabase ? 'Open Database' : 'Visit Site'}</span>
                     </button>
-                    <button class="card-action-btn secondary" onclick="quantumSystem.copyToClipboard('${item.url}')" title="Copy node address">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke-width="2"/>
-                        </svg>
+                    <button class="m3-button secondary" onclick="dashboard.copyToClipboard('${item.url}')">
+                        <span class="material-symbols-rounded">content_copy</span>
                     </button>
                 </div>
             </div>
@@ -330,18 +202,19 @@ class QuantumNodeSystem {
         const card = document.querySelector(`[data-site-id="${siteId}"]`);
         if (!card) return;
         
-        const statusNode = card.querySelector('.card-status-node');
-        const indicator = statusNode.querySelector('.status-indicator');
-        const statusText = statusNode.querySelector('.status-text');
-        const metrics = card.querySelectorAll('.metric span');
+        const statusBadge = card.querySelector('.card-status-badge');
+        const dot = statusBadge.querySelector('.status-dot');
+        const statusText = statusBadge.querySelector('span:last-child');
+        const metrics = card.querySelectorAll('.metric span:last-child');
         
         const statusColors = {
-            online: 'var(--node-online)',
-            offline: 'var(--node-offline)',
-            checking: 'var(--node-checking)'
+            online: '#4CAF50',
+            offline: '#F44336',
+            checking: '#FFC107'
         };
         
-        statusNode.style.setProperty('--status-color', statusColors[statusData.status]);
+        dot.style.background = statusColors[statusData.status];
+        statusText.style.color = statusColors[statusData.status];
         statusText.textContent = statusData.status.toUpperCase();
         
         if (metrics[0]) metrics[0].textContent = statusData.duration ? this.formatDuration(statusData.duration) : '--';
@@ -391,24 +264,6 @@ class QuantumNodeSystem {
         document.getElementById('offlineCount').textContent = offline;
         document.getElementById('checkingCount').textContent = checking;
         document.getElementById('testSitesBadge').textContent = this.config.testSites.length;
-        
-        // Update favicon based on status
-        this.updateFavicon(online, offline);
-    }
-    
-    updateFavicon(online, offline) {
-        const favicon = document.getElementById('dynamicFavicon');
-        if (!favicon) return;
-        
-        const total = online + offline;
-        const onlineRatio = online / total || 0;
-        
-        let color;
-        if (onlineRatio > 0.7) color = '#10B981';
-        else if (onlineRatio > 0.3) color = '#F59E0B';
-        else color = '#EF4444';
-        
-        favicon.href = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23${color.substring(1)}'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23ffffff'/%3E%3C/svg%3E`;
     }
     
     async fetchScriptData() {
@@ -416,8 +271,8 @@ class QuantumNodeSystem {
         const statusDot = document.getElementById('consoleStatusDot');
         
         if (statusEl) {
-            statusEl.textContent = 'QUANTUM_FETCH';
-            statusDot.style.background = 'var(--node-checking)';
+            statusEl.textContent = 'Fetching...';
+            statusDot.style.background = '#FFC107';
         }
         
         for (const endpoint of this.config.scriptEndpoints) {
@@ -439,8 +294,7 @@ class QuantumNodeSystem {
                     duration: duration,
                     success: true,
                     data: {
-                        message: 'Quantum packet received',
-                        type: 'NO_CORS',
+                        message: 'Script executed successfully',
                         timestamp: new Date().toISOString()
                     }
                 });
@@ -455,16 +309,15 @@ class QuantumNodeSystem {
                     duration: duration,
                     success: false,
                     data: {
-                        error: error.message,
-                        type: 'QUANTUM_DISRUPTION'
+                        error: error.message
                     }
                 });
             }
         }
         
         if (statusEl) {
-            statusEl.textContent = 'QUANTUM_READY';
-            statusDot.style.background = 'var(--node-online)';
+            statusEl.textContent = 'Ready';
+            statusDot.style.background = '#4CAF50';
         }
     }
     
@@ -486,10 +339,11 @@ class QuantumNodeSystem {
         if (this.state.consoleEntries.length === 0) {
             consoleBody.innerHTML = `
                 <div class="console-placeholder">
-                    <div class="placeholder-wave"></div>
-                    <div class="placeholder-text">
-                        <span>></span>
-                        <span class="cursor">_</span>
+                    <span class="material-symbols-rounded" style="font-size: 48px;">terminal</span>
+                    <p class="m3-body-medium">Console ready · Awaiting commands</p>
+                    <div class="cursor-container">
+                        <span class="prompt">$</span>
+                        <span class="cursor"></span>
                     </div>
                 </div>
             `;
@@ -525,7 +379,7 @@ class QuantumNodeSystem {
         this.state.consoleEntries = [];
         this.renderConsole();
         this.updateConsoleBadge();
-        this.showToast('Console buffer cleared', 'info');
+        this.showSnackbar('Console cleared', 'info');
     }
     
     toggleAutoRefresh() {
@@ -533,16 +387,16 @@ class QuantumNodeSystem {
         
         const btn = document.getElementById('toggleAutoRefresh');
         if (btn) {
-            btn.style.background = this.state.autoRefreshEnabled ? 
-                'linear-gradient(135deg, var(--quantum-primary), var(--quantum-secondary))' : '';
+            const icon = btn.querySelector('.material-symbols-rounded');
+            icon.textContent = this.state.autoRefreshEnabled ? 'play_arrow' : 'pause';
         }
         
         if (this.state.autoRefreshEnabled) {
             this.startAutoRefresh();
-            this.showToast('Quantum stream enabled', 'success');
+            this.showSnackbar('Auto-refresh enabled', 'success');
         } else {
             this.stopAutoRefresh();
-            this.showToast('Quantum stream paused', 'info');
+            this.showSnackbar('Auto-refresh paused', 'info');
         }
     }
     
@@ -562,13 +416,13 @@ class QuantumNodeSystem {
         }
     }
     
-    startQuantumClock() {
+    startClock() {
         setInterval(() => {
-            const clock = document.getElementById('liveClock');
-            if (clock) {
-                clock.textContent = this.formatTimestamp(new Date(), true);
+            const timestamp = document.getElementById('consoleTimestamp');
+            if (timestamp) {
+                timestamp.textContent = this.formatTimestamp(new Date());
             }
-        }, 100);
+        }, 1000);
     }
     
     startUptimeCounter() {
@@ -578,32 +432,12 @@ class QuantumNodeSystem {
     }
     
     updateFooterInfo() {
-        const uptimeEl = document.getElementById('footerUptime');
-        const timestampEl = document.getElementById('consoleTimestamp');
-        
-        if (uptimeEl) {
-            uptimeEl.textContent = `UPTIME: ${this.calculateUptime()}`;
-        }
-        
-        if (timestampEl && this.state.lastUpdateTime) {
-            timestampEl.textContent = this.formatTimestamp(this.state.lastUpdateTime);
-        }
+        // Update uptime if needed
     }
     
-    calculateUptime() {
-        const uptimeMs = Date.now() - this.state.startTime;
-        const hours = Math.floor(uptimeMs / 3600000);
-        const minutes = Math.floor((uptimeMs % 3600000) / 60000);
-        const seconds = Math.floor((uptimeMs % 60000) / 1000);
-        return `${hours}h ${minutes}m ${seconds}s`;
-    }
-    
-    formatTimestamp(date = new Date(), includeSeconds = true) {
+    formatTimestamp(date = new Date()) {
         const d = new Date(date);
-        const hours = d.getHours().toString().padStart(2, '0');
-        const minutes = d.getMinutes().toString().padStart(2, '0');
-        const seconds = d.getSeconds().toString().padStart(2, '0');
-        return includeSeconds ? `${hours}:${minutes}:${seconds}` : `${hours}:${minutes}`;
+        return d.toLocaleTimeString('en-US', { hour12: false });
     }
     
     formatDuration(ms) {
@@ -614,7 +448,7 @@ class QuantumNodeSystem {
     async copyToClipboard(text) {
         try {
             await navigator.clipboard.writeText(text);
-            this.showToast('Node address copied', 'success');
+            this.showSnackbar('Copied to clipboard', 'success');
         } catch (error) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -624,66 +458,68 @@ class QuantumNodeSystem {
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            this.showToast('Node address copied', 'success');
+            this.showSnackbar('Copied to clipboard', 'success');
         }
     }
     
-    showToast(message, type = 'info') {
-        const container = document.getElementById('toastContainer');
+    showSnackbar(message, type = 'info') {
+        const container = document.getElementById('snackbarContainer');
         if (!container) return;
         
-        const toast = document.createElement('div');
-        toast.className = `toast-node ${type}`;
-        toast.textContent = message;
+        const snackbar = document.createElement('div');
+        snackbar.className = 'm3-snackbar';
+        snackbar.innerHTML = `
+            <span>${message}</span>
+            <button class="m3-icon-button" style="width: 32px; height: 32px;" onclick="this.parentElement.remove()">
+                <span class="material-symbols-rounded" style="font-size: 18px;">close</span>
+            </button>
+        `;
         
-        container.appendChild(toast);
+        container.appendChild(snackbar);
         
         setTimeout(() => {
-            toast.style.animation = 'toastExit 0.3s ease';
-            setTimeout(() => toast.remove(), 300);
+            snackbar.style.animation = 'snackbarSlide 300ms reverse';
+            setTimeout(() => snackbar.remove(), 300);
         }, 3000);
     }
     
     setupEventListeners() {
         document.getElementById('refreshTestSites')?.addEventListener('click', async () => {
-            this.showToast('Refreshing node statuses...', 'info');
+            this.showSnackbar('Refreshing statuses...', 'info');
             await this.renderTestSites();
         });
         
         document.getElementById('toggleAutoRefresh')?.addEventListener('click', () => this.toggleAutoRefresh());
         document.getElementById('clearConsole')?.addEventListener('click', () => this.clearConsole());
         document.getElementById('fetchScriptData')?.addEventListener('click', () => {
-            this.showToast('Fetching quantum data...', 'info');
+            this.showSnackbar('Fetching data...', 'info');
             this.fetchScriptData();
         });
         
-        // Status node click handlers
-        document.getElementById('onlineNode')?.addEventListener('click', () => {
-            this.showToast(`Online nodes: ${document.getElementById('onlineCount').textContent}`, 'info');
+        // Navigation items
+        document.querySelectorAll('.m3-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.m3-nav-item.active')?.classList.remove('active');
+                this.classList.add('active');
+            });
         });
         
-        document.getElementById('offlineNode')?.addEventListener('click', () => {
-            this.showToast(`Offline nodes: ${document.getElementById('offlineCount').textContent}`, 'info');
+        // Status chips
+        document.getElementById('onlineChip')?.addEventListener('click', () => {
+            this.showSnackbar(`Online: ${document.getElementById('onlineCount').textContent} sites`, 'info');
         });
         
-        document.getElementById('checkingNode')?.addEventListener('click', () => {
-            this.showToast(`Checking nodes: ${document.getElementById('checkingCount').textContent}`, 'info');
+        document.getElementById('offlineChip')?.addEventListener('click', () => {
+            this.showSnackbar(`Offline: ${document.getElementById('offlineCount').textContent} sites`, 'info');
+        });
+        
+        document.getElementById('checkingChip')?.addEventListener('click', () => {
+            this.showSnackbar(`Checking: ${document.getElementById('checkingCount').textContent} sites`, 'info');
         });
     }
 }
 
-// Initialize quantum system
-const quantumSystem = new QuantumNodeSystem();
-
-// Handle visibility change
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        quantumSystem.stopAutoRefresh();
-    } else if (quantumSystem.state.autoRefreshEnabled) {
-        quantumSystem.startAutoRefresh();
-    }
-});
-
-// Expose to window
-window.quantumSystem = quantumSystem;
-window.copyToClipboard = (text) => quantumSystem.copyToClipboard(text);
+// Initialize dashboard
+const dashboard = new Material3Dashboard();
+window.dashboard = dashboard;
+window.copyToClipboard = (text) => dashboard.copyToClipboard(text);
