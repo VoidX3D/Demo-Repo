@@ -3,311 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links Dashboard · NODE SYSTEM</title>
+    <title>Links Dashboard · Material 3</title>
     
-    <!-- Material 3 with Google Sans -->
+    <!-- Material 3 Official Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..1000&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Material 3 Official Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,200" rel="stylesheet" />
     
     <link rel="stylesheet" href="test.css">
-    
-    <!-- Dynamic favicon -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23808080'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23ffffff'/%3E%3C/svg%3E" id="dynamicFavicon">
 </head>
-<body>
-    <!-- 3D Background Canvas -->
-    <canvas id="bgCanvas"></canvas>
-    
-    <!-- Node Connection Network -->
-    <div class="node-network" id="nodeNetwork"></div>
-    
-    <!-- Quantum Loading Overlay -->
-    <div class="quantum-overlay" id="quantumOverlay">
-        <div class="quantum-container">
-            <!-- Google-style morphing blob -->
-            <div class="morphing-blob">
-                <svg viewBox="0 0 200 200">
-                    <path fill="url(#gradient)" d="M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0">
-                        <animate attributeName="d" 
-                            dur="6s" 
-                            values="M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0;
-                                    M120,20 C170,20 200,60 200,100 C200,140 160,180 120,180 C80,180 40,140 40,100 C40,60 70,20 120,20;
-                                    M80,20 C130,20 180,50 180,100 C180,150 130,180 80,180 C30,180 0,130 0,100 C0,50 30,20 80,20;
-                                    M100,0 C150,0 200,50 200,100 C200,150 150,200 100,200 C50,200 0,150 0,100 C0,50 50,0 100,0"
-                            repeatCount="indefinite" 
-                            fill="freeze"
-                        />
-                    </path>
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1">
-                                <animate attributeName="stop-color" values="#8B5CF6;#EC4899;#8B5CF6" dur="4s" repeatCount="indefinite" />
-                            </stop>
-                            <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1">
-                                <animate attributeName="stop-color" values="#3B82F6;#8B5CF6;#3B82F6" dur="4s" repeatCount="indefinite" />
-                            </stop>
-                            <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1">
-                                <animate attributeName="stop-color" values="#EC4899;#3B82F6;#EC4899" dur="4s" repeatCount="indefinite" />
-                            </stop>
-                        </linearGradient>
-                    </defs>
-                </svg>
+<body class="m3-dark">
+    <!-- Eminem-Inspired Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <!-- Microphone Pulse Animation -->
+            <div class="mic-container">
+                <div class="mic-base"></div>
+                <div class="mic-grill">
+                    <div class="grill-line"></div>
+                    <div class="grill-line"></div>
+                    <div class="grill-line"></div>
+                    <div class="grill-line"></div>
+                    <div class="grill-line"></div>
+                </div>
+                <div class="mic-wave"></div>
+                <div class="mic-wave"></div>
+                <div class="mic-wave"></div>
+                <div class="mic-glow"></div>
             </div>
             
-            <!-- Particle ring -->
-            <div class="particle-ring">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+            <!-- Rap Text Animation -->
+            <div class="rap-text-container">
+                <div class="rap-text-line" style="--delay:0s">
+                    <span class="rap-word" style="--i:0">WILL</span>
+                    <span class="rap-word" style="--i:1">THE</span>
+                    <span class="rap-word" style="--i:2">REAL</span>
+                    <span class="rap-word" style="--i:3">SLIM</span>
+                    <span class="rap-word" style="--i:4">SHADY</span>
+                </div>
+                <div class="rap-text-line" style="--delay:0.2s">
+                    <span class="rap-word" style="--i:0">PLEASE</span>
+                    <span class="rap-word" style="--i:1">STAND</span>
+                    <span class="rap-word" style="--i:2">UP</span>
+                    <span class="rap-word" style="--i:3">?</span>
+                </div>
+                <div class="rap-text-line" style="--delay:0.4s">
+                    <span class="rap-word" style="--i:0">LOADING</span>
+                    <span class="rap-word" style="--i:1">THE</span>
+                    <span class="rap-word" style="--i:2">SYSTEM</span>
+                    <span class="rap-word" style="--i:3">...</span>
+                </div>
             </div>
             
-            <!-- Loading text with quantum effect -->
-            <div class="quantum-text">
-                <span class="quantum-char" style="--i:0">I</span>
-                <span class="quantum-char" style="--i:1">N</span>
-                <span class="quantum-char" style="--i:2">I</span>
-                <span class="quantum-char" style="--i:3">T</span>
-                <span class="quantum-char" style="--i:4">I</span>
-                <span class="quantum-char" style="--i:5">A</span>
-                <span class="quantum-char" style="--i:6">L</span>
-                <span class="quantum-char" style="--i:7">I</span>
-                <span class="quantum-char" style="--i:8">Z</span>
-                <span class="quantum-char" style="--i:9">I</span>
-                <span class="quantum-char" style="--i:10">N</span>
-                <span class="quantum-char" style="--i:11">G</span>
-                <span class="quantum-char" style="--i:12">.</span>
-                <span class="quantum-char" style="--i:13">.</span>
-                <span class="quantum-char" style="--i:14">.</span>
+            <!-- Vinyl Record Spinner -->
+            <div class="vinyl-container">
+                <div class="vinyl-record">
+                    <div class="vinyl-label">
+                        <div class="vinyl-hole"></div>
+                        <div class="vinyl-text">M3</div>
+                    </div>
+                    <div class="vinyl-groove"></div>
+                    <div class="vinyl-groove"></div>
+                    <div class="vinyl-groove"></div>
+                </div>
+                <div class="vinyl-arm"></div>
             </div>
             
-            <!-- Progress bar -->
-            <div class="quantum-progress">
-                <div class="quantum-progress-bar" id="loadingProgress"></div>
+            <!-- Progress Bar -->
+            <div class="m3-linear-progress" id="loadingProgress">
+                <div class="progress-track"></div>
+                <div class="progress-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="dashboard">
-        <!-- Cosmic Navigation -->
-        <nav class="cosmic-nav">
-            <div class="nav-glow"></div>
+    <!-- Main App Bar - M3 Official -->
+    <header class="m3-top-app-bar">
+        <div class="app-bar-container">
+            <button class="m3-icon-button">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
             
-            <div class="nav-brand">
-                <div class="brand-orbit">
-                    <div class="orbit-core">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke-width="2"/>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="orbit-ring"></div>
-                    <div class="orbit-ring"></div>
-                    <div class="orbit-ring"></div>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-title">Links Dashboard</span>
-                    <span class="brand-node">node://system/v2</span>
-                </div>
+            <div class="app-bar-headline">
+                <h1 class="m3-headline-large">Links Dashboard</h1>
+                <span class="m3-label-large">Material 3 · expressive</span>
             </div>
             
-            <!-- Quantum Status Nodes -->
-            <div class="status-nodes">
-                <div class="status-node" id="onlineNode">
-                    <div class="node-particle"></div>
-                    <div class="node-content">
-                        <span class="node-label">ONLINE</span>
-                        <span class="node-value" id="onlineCount">0</span>
-                    </div>
-                    <div class="node-ring"></div>
-                </div>
-                
-                <div class="status-node" id="offlineNode">
-                    <div class="node-particle"></div>
-                    <div class="node-content">
-                        <span class="node-label">OFFLINE</span>
-                        <span class="node-value" id="offlineCount">0</span>
-                    </div>
-                    <div class="node-ring"></div>
-                </div>
-                
-                <div class="status-node" id="checkingNode">
-                    <div class="node-particle"></div>
-                    <div class="node-content">
-                        <span class="node-label">CHECKING</span>
-                        <span class="node-value" id="checkingCount">0</span>
-                    </div>
-                    <div class="node-ring"></div>
-                </div>
+            <div class="app-bar-actions">
+                <button class="m3-icon-button" id="searchBtn">
+                    <span class="material-symbols-rounded">search</span>
+                </button>
+                <button class="m3-icon-button" id="notificationsBtn">
+                    <span class="material-symbols-rounded">notifications</span>
+                </button>
+                <button class="m3-icon-button" id="accountBtn">
+                    <span class="material-symbols-rounded">account_circle</span>
+                </button>
             </div>
-            
-            <!-- Quantum Clock -->
-            <div class="quantum-clock">
-                <div class="clock-digits" id="liveClock">--:--:--</div>
-                <div class="clock-label">SYSTEM TIME</div>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Cosmic Grid -->
-            <div class="cosmic-grid">
-                
-                <!-- Test Sites Section -->
-                <section class="node-section" id="testSitesSection">
-                    <div class="section-hologram">
-                        <div class="section-header">
-                            <div class="header-quantum">
-                                <div class="quantum-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-width="2"/>
-                                        <line x1="8" y1="21" x2="16" y2="21" stroke-width="2"/>
-                                        <line x1="12" y1="17" x2="12" y2="21" stroke-width="2"/>
-                                    </svg>
-                                    <div class="icon-pulse"></div>
-                                </div>
-                                <h2 class="section-title">TEST SITES</h2>
-                                <div class="node-badge" id="testSitesBadge">3</div>
-                            </div>
-                            
-                            <button class="quantum-button" id="refreshTestSites">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M23 4v6h-6" stroke-width="2"/>
-                                    <path d="M1 20v-6h6" stroke-width="2"/>
-                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-width="2"/>
-                                </svg>
-                                <span class="button-glow"></span>
-                            </button>
-                        </div>
-                        
-                        <div class="nodes-grid" id="testSitesGrid"></div>
-                    </div>
-                </section>
-                
-                <!-- Database Section -->
-                <section class="node-section" id="databaseSection">
-                    <div class="section-hologram">
-                        <div class="section-header">
-                            <div class="header-quantum">
-                                <div class="quantum-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="2"/>
-                                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" stroke-width="2"/>
-                                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" stroke-width="2"/>
-                                    </svg>
-                                    <div class="icon-pulse"></div>
-                                </div>
-                                <h2 class="section-title">DATABASE NODE</h2>
-                                <div class="node-badge">1</div>
-                            </div>
-                        </div>
-                        
-                        <div class="nodes-grid" id="databaseGrid"></div>
-                    </div>
-                </section>
-                
-                <!-- Quantum Console -->
-                <section class="node-section" id="consoleSection">
-                    <div class="section-hologram">
-                        <div class="section-header">
-                            <div class="header-quantum">
-                                <div class="quantum-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <polyline points="4 17 10 11 4 5" stroke-width="2"/>
-                                        <line x1="12" y1="19" x2="20" y2="19" stroke-width="2"/>
-                                    </svg>
-                                    <div class="icon-pulse"></div>
-                                </div>
-                                <h2 class="section-title">QUANTUM CONSOLE</h2>
-                                <div class="node-badge" id="consoleBadge">0</div>
-                            </div>
-                            
-                            <div class="console-controls">
-                                <button class="quantum-button small" id="toggleAutoRefresh" title="Toggle quantum stream">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <polygon points="5 3 19 12 5 21 5 3" stroke-width="2"/>
-                                    </svg>
-                                </button>
-                                
-                                <button class="quantum-button small" id="clearConsole" title="Clear quantum buffer">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <polyline points="3 6 5 6 21 6" stroke-width="2"/>
-                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="2"/>
-                                    </svg>
-                                </button>
-                                
-                                <button class="quantum-button small" id="fetchScriptData" title="Fetch quantum data">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <line x1="12" y1="5" x2="12" y2="19" stroke-width="2"/>
-                                        <polyline points="19 12 12 19 5 12" stroke-width="2"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Quantum Console Panel -->
-                        <div class="quantum-console">
-                            <div class="console-matrix">
-                                <div class="console-header">
-                                    <div class="matrix-indicator">
-                                        <div class="indicator-dot" id="consoleStatusDot"></div>
-                                        <span id="consoleStatus">QUANTUM_READY</span>
-                                    </div>
-                                    <div class="matrix-time" id="consoleTimestamp">--:--:--</div>
-                                </div>
-                                <div class="console-output" id="consoleBody">
-                                    <div class="console-placeholder">
-                                        <div class="placeholder-wave"></div>
-                                        <div class="placeholder-text">
-                                            <span>></span>
-                                            <span class="cursor">_</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+        </div>
         
-        <!-- Quantum Footer -->
-        <footer class="quantum-footer">
-            <div class="footer-matrix">
-                <div class="footer-node">
-                    <span class="node-pulse"></span>
-                    <span id="footerUptime">UPTIME: 0h 0m 0s</span>
+        <!-- M3 Status Chips -->
+        <div class="status-chip-row">
+            <div class="m3-assist-chip" id="onlineChip">
+                <span class="material-symbols-rounded">check_circle</span>
+                <span class="chip-label">Online</span>
+                <span class="chip-value" id="onlineCount">0</span>
+            </div>
+            
+            <div class="m3-assist-chip" id="offlineChip">
+                <span class="material-symbols-rounded">cancel</span>
+                <span class="chip-label">Offline</span>
+                <span class="chip-value" id="offlineCount">0</span>
+            </div>
+            
+            <div class="m3-assist-chip" id="checkingChip">
+                <span class="material-symbols-rounded">pending</span>
+                <span class="chip-label">Checking</span>
+                <span class="chip-value" id="checkingCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- M3 Navigation Rail (optional) -->
+        <nav class="m3-nav-rail">
+            <button class="m3-nav-item active">
+                <span class="material-symbols-rounded">dashboard</span>
+                <span>Dashboard</span>
+            </button>
+            <button class="m3-nav-item">
+                <span class="material-symbols-rounded">analytics</span>
+                <span>Analytics</span>
+            </button>
+            <button class="m3-nav-item">
+                <span class="material-symbols-rounded">settings</span>
+                <span>Settings</span>
+            </button>
+            <div class="nav-rail-divider"></div>
+            <button class="m3-nav-item">
+                <span class="material-symbols-rounded">help</span>
+                <span>Support</span>
+            </button>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Hero Card - M3 Card -->
+            <div class="m3-card hero-card">
+                <div class="card-content">
+                    <span class="m3-label-large">Welcome back</span>
+                    <h2 class="m3-display-small">System Status</h2>
+                    <p class="m3-body-large">All systems operational · 99.9% uptime</p>
                 </div>
-                
-                <div class="footer-node">
-                    <span class="node-pulse"></span>
-                    <span id="footerVersion">NODE v2.0.0</span>
-                </div>
-                
-                <div class="footer-node">
-                    <span class="node-pulse"></span>
-                    <span>© 2025 Sincere Bhattarai</span>
-                </div>
-                
-                <div class="footer-node">
-                    <span class="node-pulse"></span>
-                    <span id="footerStatus">STATUS: ACTIVE</span>
+                <div class="card-media">
+                    <div class="media-pattern"></div>
                 </div>
             </div>
             
-            <!-- Particle stream -->
-            <div class="particle-stream"></div>
-        </footer>
+            <!-- Test Sites Section -->
+            <section class="m3-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h2 class="m3-headline-medium">Test sites</h2>
+                        <span class="m3-label-large" id="testSitesBadge">3</span>
+                    </div>
+                    
+                    <button class="m3-fab" id="refreshTestSites">
+                        <span class="material-symbols-rounded">refresh</span>
+                    </button>
+                </div>
+                
+                <div class="m3-card-grid" id="testSitesGrid"></div>
+            </section>
+            
+            <!-- Database Section -->
+            <section class="m3-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h2 class="m3-headline-medium">Database</h2>
+                        <span class="m3-label-large">1</span>
+                    </div>
+                </div>
+                
+                <div class="m3-card-grid" id="databaseGrid"></div>
+            </section>
+            
+            <!-- Console Section -->
+            <section class="m3-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h2 class="m3-headline-medium">Live console</h2>
+                        <span class="m3-label-large" id="consoleBadge">0</span>
+                    </div>
+                    
+                    <div class="console-actions">
+                        <button class="m3-icon-button" id="toggleAutoRefresh">
+                            <span class="material-symbols-rounded">play_arrow</span>
+                        </button>
+                        <button class="m3-icon-button" id="clearConsole">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
+                        <button class="m3-icon-button" id="fetchScriptData">
+                            <span class="material-symbols-rounded">download</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- M3 Card for Console -->
+                <div class="m3-card console-card">
+                    <div class="console-header">
+                        <div class="status-indicator">
+                            <div class="status-dot" id="consoleStatusDot"></div>
+                            <span class="m3-body-medium" id="consoleStatus">Ready</span>
+                        </div>
+                        <span class="m3-body-small" id="consoleTimestamp">--:--:--</span>
+                    </div>
+                    
+                    <div class="console-output" id="consoleBody">
+                        <div class="console-placeholder">
+                            <span class="material-symbols-rounded" style="font-size: 48px;">terminal</span>
+                            <p class="m3-body-medium">Console ready · Awaiting commands</p>
+                            <div class="cursor-container">
+                                <span class="prompt">$</span>
+                                <span class="cursor"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- M3 Bottom App Bar (mobile) -->
+    <div class="m3-bottom-app-bar">
+        <button class="m3-icon-button">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+        <button class="m3-fab mini">
+            <span class="material-symbols-rounded">add</span>
+        </button>
+        <button class="m3-icon-button">
+            <span class="material-symbols-rounded">more_vert</span>
+        </button>
     </div>
     
-    <!-- Toast Container -->
-    <div class="toast-orbit" id="toastContainer"></div>
+    <!-- M3 Snackbar Container -->
+    <div class="m3-snackbar-container" id="snackbarContainer"></div>
     
     <script src="test.js"></script>
 </body>
