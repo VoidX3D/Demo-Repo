@@ -3,225 +3,766 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Professional Links Dashboard - Real-time monitoring and status tracking">
-    <meta name="theme-color" content="#000000">
-    <title>Links Dashboard</title>
+    <title>Links Dashboard · Slim Shady Edition</title>
+    
+    <!-- Material 3 Official -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..1000&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,200" rel="stylesheet" />
+    
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
     <link rel="stylesheet" href="style.css">
-    <!-- in <head> -->
-    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/067/180/461/large_2x/network-of-connected-purple-and-green-nodes-icon-symbol-illustration-vector.jpg" type="image/png">
-
 </head>
-<body>
-    <!-- Navigation Header -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <svg class="brand-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-                <span class="brand-text">Links Dashboard</span>
-            </div>
-            <div class="nav-stats">
-                <div class="stat-item">
-                    <svg class="stat-icon stat-icon-success" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span class="stat-label">Online</span>
-                    <span class="stat-value" id="onlineCount">0</span>
-                </div>
-                <div class="stat-item">
-                    <svg class="stat-icon stat-icon-error" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                    <span class="stat-label">Offline</span>
-                    <span class="stat-value" id="offlineCount">0</span>
-                </div>
-                <div class="stat-item">
-                    <svg class="stat-icon stat-icon-pending" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    <span class="stat-label">Checking</span>
-                    <span class="stat-value" id="checkingCount">0</span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content Wrapper -->
-    <main class="main-content">
-        <div class="container">
-            
-            <!-- Test Sites Section -->
-            <section class="section" id="testSitesSection">
-                <div class="section-header">
-                    <div class="section-title-group">
-                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                        <h2 class="section-title">Test Sites</h2>
-                        <span class="section-badge" id="testSitesBadge">3</span>
-                    </div>
-                    <button class="refresh-btn" id="refreshTestSites" title="Refresh Status">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="cards-grid" id="testSitesGrid"></div>
-            </section>
-
-            <!-- Database Section -->
-            <section class="section" id="databaseSection">
-                <div class="section-header">
-                    <div class="section-title-group">
-                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-                        </svg>
-                        <h2 class="section-title">Database</h2>
-                        <span class="section-badge">1</span>
-                    </div>
-                </div>
-                <div class="cards-grid" id="databaseGrid"></div>
-            </section>
-
-            <!-- Live Console Section -->
-            <section class="section" id="consoleSection">
-                <div class="section-header">
-                    <div class="section-title-group">
-                        <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
-                        <h2 class="section-title">Live Console</h2>
-                        <span class="section-badge" id="consoleBadge">0</span>
-                    </div>
-                    <div class="console-controls">
-                        <button class="console-control-btn" id="toggleAutoRefresh" title="Toggle Auto Refresh">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </button>
-                        <button class="console-control-btn" id="clearConsole" title="Clear Console">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                        <button class="console-control-btn" id="fetchScriptData" title="Fetch Script Data">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <polyline points="19 12 12 19 5 12"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="console-wrapper">
-                    <div class="console-header-bar">
-                        <div class="console-tabs">
-                            <div class="console-tab active">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="4 17 10 11 4 5"></polyline>
-                                    <line x1="12" y1="19" x2="20" y2="19"></line>
-                                </svg>
-                                <span>Output</span>
-                            </div>
-                        </div>
-                        <div class="console-status">
-                            <div class="console-status-dot"></div>
-                            <span id="consoleStatus">Ready</span>
-                        </div>
-                    </div>
-                    <div class="console-body" id="consoleBody">
-                        <div class="console-welcome">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="4 17 10 11 4 5"></polyline>
-                                <line x1="12" y1="19" x2="20" y2="19"></line>
-                            </svg>
-                            <h3>Console Ready</h3>
-                            <p>Waiting for script responses...</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4 class="footer-title">Links Dashboard</h4>
-                <p class="footer-text">Real-time monitoring and status tracking system for production environments.</p>
-            </div>
-            <div class="footer-section">
-                <h4 class="footer-title">Features</h4>
-                <ul class="footer-list">
-                    <li>Live Status Monitoring</li>
-                    <li>Automated Health Checks</li>
-                    <li>Script Response Tracking</li>
-                    <li>Real-time Updates</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4 class="footer-title">Technical</h4>
-                <ul class="footer-list">
-                    <li>Auto-refresh: 8s interval</li>
-                    <li>Status checks: On-demand</li>
-                    <li>Response time tracking</li>
-                    <li>Error logging enabled</li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4 class="footer-title">System Info</h4>
-                <ul class="footer-list">
-                    <li id="footerUptime">Uptime: Calculating...</li>
-                    <li id="footerLastUpdate">Last update: --:--:--</li>
-                    <li id="footerVersion">Version: 1.0.0</li>
-                    <li id="footerStatus">Status: Active</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025  Dashboard Made by Sincere Bhattarai.</p>
-            <div class="footer-links">
-                <a href="#" class="footer-link">|</a>
-                <span class="footer-separator">|</span>
-                <a href="#" class="footer-link">|</a>
-                <span class="footer-separator">|</span>
-                <a href="#" class="footer-link">Documentation</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Toast Notification Container -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Loading Overlay -->
+<body class="m3-dark">
+    <!-- Eminem Loading Overlay with Real Music -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner">
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
+        <div class="loading-container">
+            <!-- Hidden Audio Element -->
+            <audio id="eminemAudio" loop preload="auto">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+                <!-- Fallback - in production you'd use real Eminem track -->
+            </audio>
+            
+            <!-- Detroit Skyline Background -->
+            <div class="detroit-skyline">
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+                <div class="building"></div>
+            </div>
+            
+            <!-- 8 Mile Sign -->
+            <div class="mile-sign">
+                <div class="sign-text">8 MILE</div>
+                <div class="sign-glow"></div>
+            </div>
+            
+            <!-- Microphone Array -->
+            <div class="mic-array">
+                <div class="mic-stand"></div>
+                <div class="mic-stand"></div>
+                <div class="mic-stand"></div>
+            </div>
+            
+            <!-- Main Microphone with Shockwave -->
+            <div class="main-mic">
+                <div class="mic-head">
+                    <div class="mic-ball"></div>
+                    <div class="mic-grill">
+                        <div class="grill-pattern"></div>
+                    </div>
+                </div>
+                <div class="mic-body"></div>
+                <div class="mic-cable"></div>
+                <div class="shockwave"></div>
+                <div class="shockwave"></div>
+                <div class="shockwave"></div>
+            </div>
+            
+            <!-- Slim Shady Logo -->
+            <div class="slim-logo">
+                <svg viewBox="0 0 100 100">
+                    <path d="M20,50 Q35,20 50,20 Q65,20 80,50 Q65,80 50,80 Q35,80 20,50" fill="none" stroke="white" stroke-width="2"/>
+                    <circle cx="35" cy="40" r="3" fill="white"/>
+                    <circle cx="65" cy="40" r="3" fill="white"/>
+                    <path d="M40,60 Q50,70 60,60" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            
+            <!-- Rap Lyrics Animation -->
+            <div class="lyrics-container">
+                <div class="lyrics-line" style="--delay:0s">
+                    <span class="lyric-word" style="--i:0">WILL</span>
+                    <span class="lyric-word" style="--i:1">THE</span>
+                    <span class="lyric-word" style="--i:2">REAL</span>
+                    <span class="lyric-word" style="--i:3">SLIM</span>
+                    <span class="lyric-word" style="--i:4">SHADY</span>
+                </div>
+                <div class="lyrics-line" style="--delay:1s">
+                    <span class="lyric-word" style="--i:0">PLEASE</span>
+                    <span class="lyric-word" style="--i:1">STAND</span>
+                    <span class="lyric-word" style="--i:2">UP</span>
+                    <span class="lyric-word" style="--i:3">?</span>
+                </div>
+                <div class="lyrics-line" style="--delay:2s">
+                    <span class="lyric-word" style="--i:0">WE'RE</span>
+                    <span class="lyric-word" style="--i:1">GOING</span>
+                    <span class="lyric-word" style="--i:2">TO</span>
+                    <span class="lyric-word" style="--i:3">DETROIT</span>
+                </div>
+            </div>
+            
+            <!-- Visualizer Bars -->
+            <div class="visualizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="m3-linear-progress" id="loadingProgress">
+                <div class="progress-track"></div>
+                <div class="progress-bar"></div>
+            </div>
+            
+            <!-- Loading Status -->
+            <div class="loading-status">
+                <span id="loadingText">INITIALIZING SYSTEM...</span>
+                <span class="status-percent" id="loadingPercent">0%</span>
+            </div>
         </div>
-        <p class="loading-text">Initializing Dashboard...</p>
     </div>
 
-    <!-- External Scripts -->
+    <!-- Main App Bar -->
+    <header class="m3-top-app-bar">
+        <div class="app-bar-container">
+            <button class="m3-icon-button" id="menuBtn">
+                <span class="material-symbols-rounded">menu</span>
+            </button>
+            
+            <div class="app-bar-headline">
+                <h1 class="m3-headline-large">Links Dashboard</h1>
+                <span class="m3-label-large">Slim Shady Edition · v2.0</span>
+            </div>
+            
+            <div class="app-bar-actions">
+                <button class="m3-icon-button" id="musicBtn">
+                    <span class="material-symbols-rounded" id="musicIcon">music_note</span>
+                </button>
+                <button class="m3-icon-button" id="searchBtn">
+                    <span class="material-symbols-rounded">search</span>
+                </button>
+                <button class="m3-icon-button" id="settingsBtn">
+                    <span class="material-symbols-rounded">settings</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Status Chips -->
+        <div class="status-chip-row">
+            <div class="m3-assist-chip" id="onlineChip">
+                <span class="material-symbols-rounded">check_circle</span>
+                <span class="chip-label">Online</span>
+                <span class="chip-value" id="onlineCount">0</span>
+            </div>
+            
+            <div class="m3-assist-chip" id="offlineChip">
+                <span class="material-symbols-rounded">cancel</span>
+                <span class="chip-label">Offline</span>
+                <span class="chip-value" id="offlineCount">0</span>
+            </div>
+            
+            <div class="m3-assist-chip" id="checkingChip">
+                <span class="material-symbols-rounded">pending</span>
+                <span class="chip-label">Checking</span>
+                <span class="chip-value" id="checkingCount">0</span>
+            </div>
+            
+            <div class="m3-assist-chip" id="totalChip">
+                <span class="material-symbols-rounded">lan</span>
+                <span class="chip-label">Total</span>
+                <span class="chip-value" id="totalCount">3</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content with Sidebar -->
+    <main class="main-content">
+        <!-- Navigation Drawer (hidden by default) -->
+        <div class="m3-nav-drawer" id="navDrawer">
+            <div class="drawer-header">
+                <div class="slim-avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23D0BCFF'/%3E%3Ctext x='20' y='25' text-anchor='middle' fill='%23381E72' font-size='20' font-weight='bold'%3EE%3C/text%3E%3C/svg%3E" alt="Slim">
+                </div>
+                <div class="drawer-info">
+                    <span class="m3-title-medium">Slim Shady</span>
+                    <span class="m3-body-small">slim@detroit.8mile</span>
+                </div>
+            </div>
+            
+            <div class="drawer-menu">
+                <button class="drawer-item active" data-view="dashboard">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="drawer-item" data-view="analytics">
+                    <span class="material-symbols-rounded">analytics</span>
+                    <span>Analytics</span>
+                </button>
+                <button class="drawer-item" data-view="sites">
+                    <span class="material-symbols-rounded">dns</span>
+                    <span>Sites Manager</span>
+                </button>
+                <button class="drawer-item" data-view="database">
+                    <span class="material-symbols-rounded">database</span>
+                    <span>Database</span>
+                </button>
+                <button class="drawer-item" data-view="console">
+                    <span class="material-symbols-rounded">terminal</span>
+                    <span>Console</span>
+                </button>
+                
+                <div class="drawer-divider"></div>
+                
+                <button class="drawer-item" data-view="settings">
+                    <span class="material-symbols-rounded">settings</span>
+                    <span>Settings</span>
+                </button>
+                <button class="drawer-item" data-view="help">
+                    <span class="material-symbols-rounded">help</span>
+                    <span>Help & Support</span>
+                </button>
+            </div>
+            
+            <div class="drawer-footer">
+                <div class="version-info">v2.0.0 · Slim Shady</div>
+            </div>
+        </div>
+        
+        <!-- Content Area -->
+        <div class="content-area" id="contentArea">
+            <!-- Dashboard View (default) -->
+            <div class="view active" id="dashboardView">
+                <!-- Hero Stats Cards -->
+                <div class="stats-grid">
+                    <div class="m3-card stat-card" id="uptimeCard">
+                        <div class="stat-icon">
+                            <span class="material-symbols-rounded">schedule</span>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Uptime</span>
+                            <span class="stat-value" id="uptimeValue">0h 0m</span>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card stat-card" id="responseCard">
+                        <div class="stat-icon">
+                            <span class="material-symbols-rounded">bolt</span>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Avg Response</span>
+                            <span class="stat-value" id="avgResponse">0ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card stat-card" id="requestsCard">
+                        <div class="stat-icon">
+                            <span class="material-symbols-rounded">http</span>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Requests</span>
+                            <span class="stat-value" id="requestCount">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card stat-card" id="successCard">
+                        <div class="stat-icon">
+                            <span class="material-symbols-rounded">check_circle</span>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-label">Success Rate</span>
+                            <span class="stat-value" id="successRate">100%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analytics Charts -->
+                <div class="charts-grid">
+                    <div class="m3-card chart-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Response Time Trends</h3>
+                            <div class="chip-group">
+                                <span class="time-chip active" data-range="hour">Hour</span>
+                                <span class="time-chip" data-range="day">Day</span>
+                                <span class="time-chip" data-range="week">Week</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="responseChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card chart-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Status Distribution</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Test Sites Section -->
+                <section class="m3-section">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h2 class="m3-headline-medium">Test Sites</h2>
+                            <span class="m3-label-large" id="testSitesBadge">3</span>
+                        </div>
+                        
+                        <div class="header-actions">
+                            <button class="m3-icon-button" id="refreshTestSites">
+                                <span class="material-symbols-rounded">refresh</span>
+                            </button>
+                            <button class="m3-icon-button" id="addSiteBtn">
+                                <span class="material-symbols-rounded">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card-grid" id="testSitesGrid"></div>
+                </section>
+                
+                <!-- Database Section -->
+                <section class="m3-section">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h2 class="m3-headline-medium">Database</h2>
+                            <span class="m3-label-large">1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card-grid" id="databaseGrid"></div>
+                </section>
+            </div>
+            
+            <!-- Analytics View (hidden by default) -->
+            <div class="view" id="analyticsView">
+                <div class="analytics-header">
+                    <h2 class="m3-headline-medium">Analytics Dashboard</h2>
+                    <div class="date-range">
+                        <button class="m3-button text" id="dateRangeBtn">
+                            <span class="material-symbols-rounded">calendar_today</span>
+                            <span>Last 7 days</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Analytics Grid -->
+                <div class="analytics-grid">
+                    <div class="m3-card analytics-card large">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Request Volume</h3>
+                            <span class="trend-badge positive">+23%</span>
+                        </div>
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                    
+                    <div class="m3-card analytics-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Status Codes</h3>
+                        </div>
+                        <canvas id="statusCodesChart"></canvas>
+                    </div>
+                    
+                    <div class="m3-card analytics-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Top Sites</h3>
+                        </div>
+                        <div class="top-sites-list" id="topSitesList"></div>
+                    </div>
+                    
+                    <div class="m3-card analytics-card large">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Response Time Heatmap</h3>
+                        </div>
+                        <div class="heatmap-grid" id="heatmap"></div>
+                    </div>
+                    
+                    <div class="m3-card analytics-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Uptime SLA</h3>
+                        </div>
+                        <div class="sla-display">
+                            <div class="sla-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--md-sys-color-surface-variant)" stroke-width="10"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--md-sys-color-primary)" stroke-width="10" stroke-dasharray="283" stroke-dashoffset="28.3" transform="rotate(-90 50 50)"/>
+                                </svg>
+                                <span class="sla-percent">99.9%</span>
+                            </div>
+                            <div class="sla-details">
+                                <div class="sla-item">
+                                    <span>Last 24h</span>
+                                    <span class="sla-value">100%</span>
+                                </div>
+                                <div class="sla-item">
+                                    <span>Last 7d</span>
+                                    <span class="sla-value">99.9%</span>
+                                </div>
+                                <div class="sla-item">
+                                    <span>Last 30d</span>
+                                    <span class="sla-value">99.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card analytics-card">
+                        <div class="card-header">
+                            <h3 class="m3-title-medium">Geographic Distribution</h3>
+                        </div>
+                        <div class="geo-stats">
+                            <div class="geo-item">
+                                <span>🇺🇸 NA</span>
+                                <div class="geo-bar">
+                                    <div class="geo-fill" style="width: 65%"></div>
+                                </div>
+                                <span>65%</span>
+                            </div>
+                            <div class="geo-item">
+                                <span>🇪🇺 EU</span>
+                                <div class="geo-bar">
+                                    <div class="geo-fill" style="width: 20%"></div>
+                                </div>
+                                <span>20%</span>
+                            </div>
+                            <div class="geo-item">
+                                <span>🇯🇵 AS</span>
+                                <div class="geo-bar">
+                                    <div class="geo-fill" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                            <div class="geo-item">
+                                <span>🌏 OC</span>
+                                <div class="geo-bar">
+                                    <div class="geo-fill" style="width: 5%"></div>
+                                </div>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings View (hidden by default) -->
+            <div class="view" id="settingsView">
+                <div class="settings-header">
+                    <h2 class="m3-headline-medium">Settings</h2>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">refresh</span>
+                            <h3 class="m3-title-medium">Auto-Refresh</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Enable auto-refresh</span>
+                                <span class="setting-description">Automatically fetch script data</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="autoRefreshToggle" checked>
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Refresh interval</span>
+                                <span class="setting-description">Time between refreshes</span>
+                            </div>
+                            <select class="m3-select" id="refreshInterval">
+                                <option value="5000">5 seconds</option>
+                                <option value="8000" selected>8 seconds</option>
+                                <option value="15000">15 seconds</option>
+                                <option value="30000">30 seconds</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">notifications</span>
+                            <h3 class="m3-title-medium">Notifications</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Desktop notifications</span>
+                                <span class="setting-description">Get alerts for status changes</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="notificationsToggle">
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Sound alerts</span>
+                                <span class="setting-description">Play sound on errors</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="soundToggle">
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Email reports</span>
+                                <span class="setting-description">Daily status summary</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="emailToggle">
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">palette</span>
+                            <h3 class="m3-title-medium">Appearance</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Theme</span>
+                            </div>
+                            <div class="theme-selector">
+                                <button class="theme-option active" data-theme="dark">
+                                    <span class="material-symbols-rounded">dark_mode</span>
+                                    Dark
+                                </button>
+                                <button class="theme-option" data-theme="light">
+                                    <span class="material-symbols-rounded">light_mode</span>
+                                    Light
+                                </button>
+                                <button class="theme-option" data-theme="system">
+                                    <span class="material-symbols-rounded">settings_suggest</span>
+                                    System
+                                </button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Density</span>
+                            </div>
+                            <div class="density-selector">
+                                <button class="density-option" data-density="comfortable">Comfortable</button>
+                                <button class="density-option active" data-density="standard">Standard</button>
+                                <button class="density-option" data-density="compact">Compact</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">security</span>
+                            <h3 class="m3-title-medium">Security</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Two-factor auth</span>
+                                <span class="setting-description">Additional security layer</span>
+                            </div>
+                            <button class="m3-button outlined">Enable</button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">API keys</span>
+                                <span class="setting-description">Manage access tokens</span>
+                            </div>
+                            <button class="m3-button outlined">Manage</button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Session timeout</span>
+                            </div>
+                            <select class="m3-select">
+                                <option>30 minutes</option>
+                                <option>1 hour</option>
+                                <option>4 hours</option>
+                                <option>Never</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">storage</span>
+                            <h3 class="m3-title-medium">Data Management</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Retention period</span>
+                            </div>
+                            <select class="m3-select">
+                                <option>7 days</option>
+                                <option>30 days</option>
+                                <option>90 days</option>
+                                <option>1 year</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <button class="m3-button outlined">
+                                <span class="material-symbols-rounded">download</span>
+                                Export Data
+                            </button>
+                            <button class="m3-button outlined">
+                                <span class="material-symbols-rounded">delete</span>
+                                Clear History
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="m3-card settings-card">
+                        <div class="card-header">
+                            <span class="material-symbols-rounded">music_note</span>
+                            <h3 class="m3-title-medium">Slim Shady Features</h3>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Loading music</span>
+                                <span class="setting-description">Play "Real Slim Shady" on startup</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="musicToggle" checked>
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Detroit mode</span>
+                                <span class="setting-description">8 Mile themed accents</span>
+                            </div>
+                            <label class="m3-switch">
+                                <input type="checkbox" id="detroitToggle" checked>
+                                <span class="switch-track"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <button class="m3-button filled" id="testMusicBtn">
+                                <span class="material-symbols-rounded">play_arrow</span>
+                                Play Theme Song
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-actions">
+                    <button class="m3-button filled" id="saveSettings">Save Changes</button>
+                    <button class="m3-button outlined" id="resetSettings">Reset to Default</button>
+                </div>
+            </div>
+            
+            <!-- Console View (hidden by default) -->
+            <div class="view" id="consoleView">
+                <div class="console-container">
+                    <div class="console-toolbar">
+                        <div class="console-tabs">
+                            <button class="console-tab active" data-console="output">Output</button>
+                            <button class="console-tab" data-console="errors">Errors</button>
+                            <button class="console-tab" data-console="logs">Logs</button>
+                        </div>
+                        <div class="console-actions">
+                            <button class="m3-icon-button" id="consoleClear">
+                                <span class="material-symbols-rounded">clear_all</span>
+                            </button>
+                            <button class="m3-icon-button" id="consoleCopy">
+                                <span class="material-symbols-rounded">content_copy</span>
+                            </button>
+                            <button class="m3-icon-button" id="consoleDownload">
+                                <span class="material-symbols-rounded">download</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="console-output-full" id="consoleFullOutput">
+                        <div class="console-line">
+                            <span class="line-prompt">$</span>
+                            <span class="line-text">System initialized · Slim Shady mode active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="console-input">
+                        <span class="prompt">$</span>
+                        <input type="text" placeholder="Enter command..." id="consoleInput">
+                        <button class="m3-icon-button" id="consoleSend">
+                            <span class="material-symbols-rounded">send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Now Playing Bar -->
+    <div class="now-playing-bar" id="nowPlayingBar">
+        <div class="now-playing-content">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23D0BCFF'/%3E%3Ctext x='20' y='25' text-anchor='middle' fill='%23381E72' font-size='20'%3ESS%3C/text%3E%3C/svg%3E" alt="Album" class="album-art">
+            <div class="track-info">
+                <span class="track-name">The Real Slim Shady</span>
+                <span class="artist-name">Eminem</span>
+            </div>
+            <div class="playback-controls">
+                <button class="m3-icon-button small" id="prevTrack">
+                    <span class="material-symbols-rounded">skip_previous</span>
+                </button>
+                <button class="m3-icon-button small" id="playPause">
+                    <span class="material-symbols-rounded" id="playIcon">play_circle</span>
+                </button>
+                <button class="m3-icon-button small" id="nextTrack">
+                    <span class="material-symbols-rounded">skip_next</span>
+                </button>
+            </div>
+            <div class="volume-control">
+                <button class="m3-icon-button small" id="volumeBtn">
+                    <span class="material-symbols-rounded" id="volumeIcon">volume_up</span>
+                </button>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+            <button class="m3-icon-button small" id="closeNowPlaying">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- M3 Snackbar Container -->
+    <div class="m3-snackbar-container" id="snackbarContainer"></div>
+    
+    <!-- Add Site Modal -->
+    <div class="m3-modal" id="addSiteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="m3-headline-small">Add New Site</h3>
+                <button class="m3-icon-button" id="closeModal">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="m3-text-field">
+                    <input type="text" id="siteName" placeholder=" ">
+                    <label>Site Name</label>
+                </div>
+                <div class="m3-text-field">
+                    <input type="url" id="siteUrl" placeholder=" ">
+                    <label>URL</label>
+                </div>
+                <div class="m3-text-field">
+                    <input type="text" id="siteDescription" placeholder=" ">
+                    <label>Description</label>
+                </div>
+                <div class="m3-text-field">
+                    <input type="url" id="siteImage" placeholder=" ">
+                    <label>Image URL (optional)</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="m3-button text" id="cancelModal">Cancel</button>
+                <button class="m3-button filled" id="saveSite">Add Site</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
