@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links Dashboard · Slim Shady Edition</title>
     
-    <!-- Material 3 Official -->
+    <!-- Material 3 Official Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..1000&family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Material 3 Official Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,200" rel="stylesheet" />
     
     <!-- Chart.js for analytics -->
@@ -23,11 +25,13 @@
             <!-- Hidden Audio Element -->
             <audio id="eminemAudio" loop preload="auto">
                 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
-                <!-- Fallback - in production you'd use real Eminem track -->
+                <!-- In production, replace with actual Eminem track -->
             </audio>
             
             <!-- Detroit Skyline Background -->
             <div class="detroit-skyline">
+                <div class="building"></div>
+                <div class="building"></div>
                 <div class="building"></div>
                 <div class="building"></div>
                 <div class="building"></div>
@@ -654,7 +658,62 @@
                 </div>
             </div>
             
-            <!-- Console View (hidden by default) -->
+            <!-- Sites Manager View -->
+            <div class="view" id="sitesView">
+                <div class="sites-header">
+                    <h2 class="m3-headline-medium">Sites Manager</h2>
+                    <button class="m3-button filled" id="manageAddSite">
+                        <span class="material-symbols-rounded">add</span>
+                        Add Site
+                    </button>
+                </div>
+                
+                <div class="sites-table-container">
+                    <table class="sites-table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Name</th>
+                                <th>URL</th>
+                                <th>Response Time</th>
+                                <th>Uptime</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sitesTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Database View -->
+            <div class="view" id="databaseView">
+                <div class="database-header">
+                    <h2 class="m3-headline-medium">Database Manager</h2>
+                </div>
+                
+                <div class="database-grid" id="databaseFullGrid"></div>
+                
+                <div class="database-stats">
+                    <div class="m3-card">
+                        <div class="stat-row">
+                            <span>Total Records</span>
+                            <span class="stat-number">1,234</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Last Updated</span>
+                            <span class="stat-number" id="dbLastUpdated">Just now</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Storage Used</span>
+                            <span class="stat-number">45.2 MB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Console View -->
             <div class="view" id="consoleView">
                 <div class="console-container">
                     <div class="console-toolbar">
@@ -681,6 +740,10 @@
                             <span class="line-prompt">$</span>
                             <span class="line-text">System initialized · Slim Shady mode active</span>
                         </div>
+                        <div class="console-line">
+                            <span class="line-prompt">$</span>
+                            <span class="line-text">Type 'help' for available commands</span>
+                        </div>
                     </div>
                     
                     <div class="console-input">
@@ -689,6 +752,65 @@
                         <button class="m3-icon-button" id="consoleSend">
                             <span class="material-symbols-rounded">send</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Help View -->
+            <div class="view" id="helpView">
+                <div class="help-header">
+                    <h2 class="m3-headline-medium">Help & Support</h2>
+                </div>
+                
+                <div class="help-grid">
+                    <div class="m3-card help-card">
+                        <span class="material-symbols-rounded">quick_reference</span>
+                        <h3>Quick Start</h3>
+                        <p>Learn the basics of monitoring your sites</p>
+                        <button class="m3-button text">Read More</button>
+                    </div>
+                    
+                    <div class="m3-card help-card">
+                        <span class="material-symbols-rounded">api</span>
+                        <h3>API Documentation</h3>
+                        <p>Integrate with our REST API</p>
+                        <button class="m3-button text">View Docs</button>
+                    </div>
+                    
+                    <div class="m3-card help-card">
+                        <span class="material-symbols-rounded">contact_support</span>
+                        <h3>Contact Support</h3>
+                        <p>Get help from our team</p>
+                        <button class="m3-button text">Contact</button>
+                    </div>
+                    
+                    <div class="m3-card help-card">
+                        <span class="material-symbols-rounded">bug_report</span>
+                        <h3>Report Issue</h3>
+                        <p>Found a bug? Let us know</p>
+                        <button class="m3-button text">Report</button>
+                    </div>
+                </div>
+                
+                <div class="faq-section">
+                    <h3 class="m3-title-medium">Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I add a new site?</span>
+                            <span class="material-symbols-rounded">expand_more</span>
+                        </button>
+                        <div class="faq-answer">
+                            Click the "Add Site" button in the Sites Manager or use the + icon on the dashboard.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What does the Slim Shady mode do?</span>
+                            <span class="material-symbols-rounded">expand_more</span>
+                        </button>
+                        <div class="faq-answer">
+                            Enables Detroit-themed visuals and plays Eminem music during loading.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -761,6 +883,19 @@
                 <button class="m3-button filled" id="saveSite">Add Site</button>
             </div>
         </div>
+    </div>
+    
+    <!-- M3 Bottom App Bar (mobile) -->
+    <div class="m3-bottom-app-bar">
+        <button class="m3-icon-button">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+        <button class="m3-fab mini">
+            <span class="material-symbols-rounded">add</span>
+        </button>
+        <button class="m3-icon-button">
+            <span class="material-symbols-rounded">more_vert</span>
+        </button>
     </div>
     
     <script src="script.js"></script>
